@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Post Detail{% endblock %}
+{% block content %}
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-3">
+                <div class="row justify-content-md-center">                    
+                    <div class="col-md-9">
+                        <div id="post_details_carousel" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                {% for image in images %}
+                                    <li data-bs-target="#post_details_carousel" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}">
+                                        
+                                    </li>
+                                {% endfor %}                                                              
+                            </ol>                                                         
+                            <div class="carousel-inner cont-slider">
+                                {% for image in images %}
+                                    {% if forloop.first %}
+                                        <div class="carousel-item active">
+                                    {% else %}
+                                        <div class="carousel-item">
+                                    {% endif %}
+                                            <img src="{{ image.image.url }}" class="d-block w-100 rounded-3" alt="{{ post.title }}">
+                                        </div>
+                                {% endfor %}
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#post_details_carousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#post_details_carousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>                                                
+                    </div>
+                    <div class="row">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                {{ post.title }}
+                            </h5>
+                            <p class="card-text">{{ post.description|safe }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

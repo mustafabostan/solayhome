@@ -1,0 +1,28 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Catalog {% endblock  %}
+{% block content %}
+<div class="container-fluid">    
+    <div class="row">
+        <div class="col-sm-3 mt-2">
+            {% include 'catalog/partials/_categories.html' %}
+        </div>
+        <div class="col-sm-8">
+            <div class="row">
+                {% if posts|length > 0 %}
+                    {% for post in posts %}
+                        {% if post.is_active %}
+                            <div class="col col-sm-4 mt-2">           
+                                {% include 'catalog/partials/_post.html' %}                     
+                            </div>
+                        {% endif %}                    
+                    {% endfor %}
+                {% else %}
+                    <div class="alert alert-warning mt-2">No Posts Yet</div>
+                {% endif %}
+            </div>
+        </div>        
+    </div>
+</div>
+{% endblock  %}

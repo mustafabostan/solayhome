@@ -1,0 +1,9 @@
+{% load static %}
+<div class="card" style="width: 20rem; ">    
+        <img src="{{ post.home_image.url }}" class="card-img-top" style="height: 14rem;">                                             
+    <div class="card-body">
+        <h5 class="card-title">{{ post.title }}</h5>
+        <p class="card-text">{{ post.description|striptags|slice:"0:100" }}</p>
+        <a href="{% url 'post_details' post.slug %}" class="btn btn-primary">See Details</a>
+    </div>
+</div>
